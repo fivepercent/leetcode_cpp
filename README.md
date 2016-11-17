@@ -1,2 +1,2 @@
-# leetcode_python
+# leetcode_c++
 
