@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        return findKthLargestHelper(nums, k, 0, nums.size()-1);
+    }
+public:
+    int findKthLargestHelper(vector<int>& nums, int k, int start, int end) {
+        int p=pivot(nums, start, end);
+        if(p==k-1){
+            return nums[p];
+        }else if(p>k-1){
+            return findKthLargestHelper(nums, k, start, p-1);
+        }else{
+            return findKthLargestHelper(nums, k, p+1, end);
+        }
+    }
+public:
+    int pivot(vector<int>& nums, int start, int end){
+        int left=start;
+        int right=end;
+        int pivot = nums[left];
+        while(left<right){
+            while(left<right&&nums[right]<=pivot)right--;
+            nums[left]=nums[right];
+            while(left<right&&nums[left]>=pivot)left++;
+            nums[right]=nums[left];
+        }
+        nums[left]=pivot;
+        return left;
+    }
+};
