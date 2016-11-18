@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int lens=s.size();
+        int lenp=p.size();
+        int si=0;
+        int pi=0;
+        int lastStar=-1;
+        int lastPos=-1;
+        while(si<lens){
+            if(pi<lenp&&(s[si]==p[pi]||p[pi]=='?'){
+                pi++;
+                si++;
+            }else if(pi<lenp&&p[pi]=='*'){
+                lastStar=pi;
+                lastPos=si;
+                pi++;
+            }else if(lastStar!=-1){
+                pi=lastStar;
+                si=++lastPos;
+            }else{
+                return false;
+            }
+        }
+        while(pi<lenp&&p[pi]=='*')pi++;
+        return pi==lenp;
+    }
+};
