@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        generateParenthesisHelper(n,n,"", res);
+        return res;
+    }
+public:
+    void generateParenthesisHelper(int left, int right, string parentheses, vector<string>& res){
+        if(left==0&&right==0){
+            res.push_back(parentheses);
+            return;
+        }
+        if(left>0){
+            generateParenthesisHelper(left-1, right, parentheses+"(", res);
+        }
+        if(right>left){
+            generateParenthesisHelper(left, right-1, parentheses+")", res);
+        }
+    }
+};
